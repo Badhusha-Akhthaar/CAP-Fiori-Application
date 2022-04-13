@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.9.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "Northwind.Products": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "type": "cds.LargeString"
+        },
+        "Description": {
+          "type": "cds.LargeString"
+        },
+        "ReleaseDate": {
+          "type": "cds.DateTime",
+          "@odata.precision": 0,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "DiscontinuedDate": {
+          "type": "cds.DateTime",
+          "@odata.precision": 0,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "Rating": {
+          "type": "cds.Integer"
+        },
+        "Price": {
+          "type": "cds.Double"
+        },
+        "Categories": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Categories",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        },
+        "Supplier": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Suppliers",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        },
+        "ProductDetail": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.ProductDetails",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.FeaturedProduct": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "includes": [
+        "Northwind.Products"
+      ],
+      "elements": {
+        "Advertisement": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Advertisements",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.ProductDetails": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ProductID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Details": {
+          "type": "cds.LargeString"
+        },
+        "Product": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Products",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Categories": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "type": "cds.LargeString"
+        },
+        "Products": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Products",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Suppliers": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "type": "cds.LargeString"
+        },
+        "Address": {
+          "type": "Northwind.Address"
+        },
+        "Concurrency": {
+          "type": "cds.Integer"
+        },
+        "Products": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Products",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Persons": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "type": "cds.LargeString"
+        },
+        "PersonDetail": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.PersonDetails",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Customer": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "includes": [
+        "Northwind.Persons"
+      ],
+      "elements": {
+        "TotalExpense": {
+          "type": "cds.DecimalFloat"
+        }
+      }
+    },
+    "Northwind.Employee": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "includes": [
+        "Northwind.Persons"
+      ],
+      "elements": {
+        "EmployeeID": {
+          "type": "cds.Integer64"
+        },
+        "HireDate": {
+          "type": "cds.DateTime",
+          "@odata.precision": 0,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "Salary": {
+          "type": "cds.Double",
+          "@odata.type": "Edm.Single"
+        }
+      }
+    },
+    "Northwind.PersonDetails": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "PersonID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "Age": {
+          "type": "cds.Integer"
+        },
+        "Gender": {
+          "type": "cds.Boolean"
+        },
+        "Phone": {
+          "type": "cds.LargeString"
+        },
+        "Address": {
+          "type": "Northwind.Address"
+        },
+        "Photo": {
+          "type": "cds.LargeBinary",
+          "@odata.type": "Edm.Stream"
+        },
+        "Person": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.Persons",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Advertisements": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "Name": {
+          "type": "cds.LargeString"
+        },
+        "AirDate": {
+          "type": "cds.DateTime",
+          "@odata.precision": 0,
+          "@odata.type": "Edm.DateTimeOffset"
+        },
+        "FeaturedProduct": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "Northwind.FeaturedProduct",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "Northwind.Address": {
+      "kind": "type",
+      "elements": {
+        "Street": {
+          "type": "cds.LargeString"
+        },
+        "City": {
+          "type": "cds.LargeString"
+        },
+        "State": {
+          "type": "cds.LargeString"
+        },
+        "ZipCode": {
+          "type": "cds.LargeString"
+        },
+        "Country": {
+          "type": "cds.LargeString"
+        }
+      }
+    },
+    "Northwind": {
+      "kind": "service",
+      "@cds.external": true
+    }
+  }
+}

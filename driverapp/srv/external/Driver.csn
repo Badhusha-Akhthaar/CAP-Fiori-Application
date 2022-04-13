@@ -1,0 +1,778 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.9.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "Driver": {
+      "kind": "service",
+      "@cds.external": true,
+      "@m.IsDefaultEntityContainer": "true",
+      "@sap.message.scope.supported": "true",
+      "@sap.supported.formats": "atom json xlsx"
+    },
+    "Driver.ZTMDRIATTA_C": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "DRIVER Attachment - Consumption View",
+      "elements": {
+        "tor_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document"
+        },
+        "doc_key": {
+          "key": true,
+          "type": "cds.String",
+          "length": 32,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Attachment Folder Object ID",
+          "@sap.heading": ""
+        },
+        "mimecode": {
+          "type": "cds.String",
+          "length": 128,
+          "@sap.label": "MIME type",
+          "@sap.quickinfo": "HTML content type"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 255,
+          "@sap.label": "Component name",
+          "@sap.quickinfo": "Relative storage location of physical document"
+        },
+        "alternative_name": {
+          "type": "cds.String",
+          "length": 255,
+          "@sap.label": "Component name",
+          "@sap.quickinfo": "Relative storage location of physical document"
+        },
+        "description": {
+          "type": "cds.String",
+          "length": 64,
+          "@sap.label": "Title",
+          "@sap.quickinfo": "Title of a document"
+        },
+        "filesize_content": {
+          "type": "cds.String",
+          "length": 12,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Component size",
+          "@sap.quickinfo": "File size (in bytes)"
+        },
+        "folder": {
+          "type": "cds.String",
+          "length": 64,
+          "@sap.label": "Title",
+          "@sap.quickinfo": "Title of a document"
+        },
+        "to_root": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIROOT_C",
+          "on": [
+            {
+              "ref": [
+                "to_root",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Driver.ZTMDRIITEM_C": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "DRIVER Item - Consumption View",
+      "elements": {
+        "tor_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document"
+        },
+        "item_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Item"
+        },
+        "product_id": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Product"
+        },
+        "item_descr": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Item Description"
+        },
+        "des_loc_idtrq": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Destination Location"
+        },
+        "des_name": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Loc. Description",
+          "@sap.quickinfo": "Location Description"
+        },
+        "gro_wei_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 14,
+          "@sap.unit": "gro_wei_uni"
+        },
+        "gro_wei_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Weight unit",
+          "@sap.quickinfo": "Weight Unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "gro_vol_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 14,
+          "@sap.unit": "gro_vol_uni"
+        },
+        "gro_vol_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Volume unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "qua_pcs_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 14,
+          "@sap.unit": "qua_pcs_uni"
+        },
+        "qua_pcs_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Sales unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "to_root": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIROOT_C",
+          "on": [
+            {
+              "ref": [
+                "to_root",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Driver.ZTMDRIROOT_C": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "DRIVER Root - Consumption View",
+      "elements": {
+        "tor_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document"
+        },
+        "tor_cat": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document Category",
+          "@sap.quickinfo": "Business Document Category"
+        },
+        "execution": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Execution Status"
+        },
+        "src_locid": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Location"
+        },
+        "pickup_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Transp. Plng Date",
+          "@sap.quickinfo": "Transportation Planning Date"
+        },
+        "pickup_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "pickup_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "des_locid": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Location"
+        },
+        "des_name": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Loc. Description",
+          "@sap.quickinfo": "Location Description"
+        },
+        "des_city": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "City"
+        },
+        "driver1": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Resource"
+        },
+        "driver2": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Resource"
+        },
+        "return_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Transp. Plng Date",
+          "@sap.quickinfo": "Transportation Planning Date"
+        },
+        "return_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "return_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "lifecycle": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Life Cycle Status"
+        },
+        "load_conf_seq_nbr": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "load_conf_actual_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Actual Event Date",
+          "@sap.quickinfo": "Actual Date/Time of Event"
+        },
+        "load_conf_actual_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "load_conf_actual_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "arri_seq_nbr": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "arri_actual_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Actual Event Date",
+          "@sap.quickinfo": "Actual Date/Time of Event"
+        },
+        "arri_actual_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "arri_actual_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "depa_seq_nbr": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "depa_actual_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Actual Event Date",
+          "@sap.quickinfo": "Actual Date/Time of Event"
+        },
+        "depa_actual_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "depa_actual_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "pickup_offset": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0
+        },
+        "to_atta": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIATTA_C",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_atta",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        },
+        "to_item": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIITEM_C",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_item",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        },
+        "to_stop": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRISTOP_C",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_stop",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Driver.ZTMDRISTIT_C": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "Stop Item - Consumption View",
+      "elements": {
+        "tor_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document"
+        },
+        "stop_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Stop"
+        },
+        "item_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Item"
+        },
+        "product_id": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Product"
+        },
+        "item_descr": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Item Description"
+        },
+        "gro_wei_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "gro_wei_uni"
+        },
+        "gro_wei_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Weight unit",
+          "@sap.quickinfo": "Weight Unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "gro_vol_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "gro_vol_uni"
+        },
+        "gro_vol_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Volume unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "qua_pcs_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "qua_pcs_uni"
+        },
+        "qua_pcs_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Sales unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "act_qua_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "act_qua_uni"
+        },
+        "act_qua_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Weight unit",
+          "@sap.quickinfo": "Weight Unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "act_wei_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "act_wei_uni"
+        },
+        "act_wei_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Weight unit",
+          "@sap.quickinfo": "Weight Unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "act_vol_val": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 2,
+          "@sap.unit": "act_vol_uni"
+        },
+        "act_vol_uni": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.label": "Weight unit",
+          "@sap.quickinfo": "Weight Unit",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "to_root": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIROOT_C",
+          "on": [
+            {
+              "ref": [
+                "to_root",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        },
+        "to_stop": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRISTOP_C",
+          "on": [
+            {
+              "ref": [
+                "to_stop",
+                "stop_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "stop_id"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_stop",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "Driver.ZTMDRISTOP_C": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "DRIVER Stop - Consumption View",
+      "elements": {
+        "tor_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Document"
+        },
+        "stop_id": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Stop"
+        },
+        "distance_km": {
+          "type": "cds.Decimal",
+          "precision": 28,
+          "scale": 2
+        },
+        "des_locid": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Location"
+        },
+        "des_xpos": {
+          "type": "cds.Double",
+          "@sap.label": "Longitude",
+          "@sap.quickinfo": "Longitude Specified in GPS Coordinates"
+        },
+        "des_ypos": {
+          "type": "cds.Double",
+          "@sap.label": "Latitude",
+          "@sap.quickinfo": "Latitude Specified in GPS Coordinates"
+        },
+        "des_name": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Loc. Description",
+          "@sap.quickinfo": "Location Description"
+        },
+        "des_city": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "City"
+        },
+        "planned_arr": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Transp. Plng Date",
+          "@sap.quickinfo": "Transportation Planning Date"
+        },
+        "planned_arr_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "planned_arr_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "planned_dep": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Transp. Plng Date",
+          "@sap.quickinfo": "Transportation Planning Date"
+        },
+        "planned_dep_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "planned_dep_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "status": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "arri_seq_nbr": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "arri_actual_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Actual Event Date",
+          "@sap.quickinfo": "Actual Date/Time of Event"
+        },
+        "arri_actual_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "arri_actual_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "depa_seq_nbr": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "depa_actual_tstmp": {
+          "type": "cds.Decimal",
+          "precision": 15,
+          "scale": 0,
+          "@sap.label": "Actual Event Date",
+          "@sap.quickinfo": "Actual Date/Time of Event"
+        },
+        "depa_actual_dt": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "depa_actual_ti": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "to_root": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRIROOT_C",
+          "on": [
+            {
+              "ref": [
+                "to_root",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        },
+        "to_stit": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "Driver.ZTMDRISTIT_C",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_stit",
+                "stop_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "stop_id"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_stit",
+                "tor_id"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "tor_id"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

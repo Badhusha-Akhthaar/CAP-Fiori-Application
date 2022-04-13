@@ -1,0 +1,13 @@
+---
+spring:
+  config.activate.on-profile: default
+cds:
+  remote.services:
+    - name: "Driver"
+      model: "Driver"
+      destination:
+        name: "S4BCLNT100"
+        suffix: "/sap/opu/odata/sap/ZTMDRIROOT_C_CDS"
+        type: "odata-v2"
+  datasource:
+    auto-config.enabled: false

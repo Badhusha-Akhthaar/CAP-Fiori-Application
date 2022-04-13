@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList" />
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://vm2110.sapls.local:8000/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation" />
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZTMDRIROOT_C_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm" />
+            <EntityType Name="ZTMDRIATTA_CType" sap:label="DRIVER Attachment - Consumption View" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="tor_id" />
+                    <PropertyRef Name="doc_key" />
+                </Key>
+                <Property Name="tor_id" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document" />
+                <Property Name="doc_key" Type="Edm.String" Nullable="false" MaxLength="32" sap:display-format="UpperCase" sap:label="Attachment Folder Object ID" sap:heading="" />
+                <Property Name="mimecode" Type="Edm.String" MaxLength="128" sap:label="MIME type" sap:quickinfo="HTML content type" />
+                <Property Name="name" Type="Edm.String" MaxLength="255" sap:label="Component name" sap:quickinfo="Relative storage location of physical document" />
+                <Property Name="alternative_name" Type="Edm.String" MaxLength="255" sap:label="Component name" sap:quickinfo="Relative storage location of physical document" />
+                <Property Name="description" Type="Edm.String" MaxLength="64" sap:label="Title" sap:quickinfo="Title of a document" />
+                <Property Name="filesize_content" Type="Edm.String" MaxLength="12" sap:display-format="NonNegative" sap:label="Component size" sap:quickinfo="File size (in bytes)" />
+                <Property Name="folder" Type="Edm.String" MaxLength="64" sap:label="Title" sap:quickinfo="Title of a document" />
+                <NavigationProperty Name="to_root" Relationship="ZTMDRIROOT_C_CDS.assoc_CAAD85C875F30573C91A00B4CD36638B" FromRole="ToRole_assoc_CAAD85C875F30573C91A00B4CD36638B" ToRole="FromRole_assoc_CAAD85C875F30573C91A00B4CD36638B" />
+            </EntityType>
+            <EntityType Name="ZTMDRIITEM_CType" sap:label="DRIVER Item - Consumption View" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="tor_id" />
+                    <PropertyRef Name="item_id" />
+                </Key>
+                <Property Name="tor_id" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document" />
+                <Property Name="item_id" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Item" />
+                <Property Name="product_id" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Product" />
+                <Property Name="item_descr" Type="Edm.String" MaxLength="40" sap:label="Item Description" />
+                <Property Name="des_loc_idtrq" Type="Edm.String" MaxLength="20" sap:label="Destination Location" />
+                <Property Name="des_name" Type="Edm.String" MaxLength="40" sap:label="Loc. Description" sap:quickinfo="Location Description" />
+                <Property Name="gro_wei_val" Type="Edm.Decimal" Precision="31" Scale="14" sap:unit="gro_wei_uni" />
+                <Property Name="gro_wei_uni" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure" />
+                <Property Name="gro_vol_val" Type="Edm.Decimal" Precision="31" Scale="14" sap:unit="gro_vol_uni" />
+                <Property Name="gro_vol_uni" Type="Edm.String" MaxLength="3" sap:label="Volume unit" sap:semantics="unit-of-measure" />
+                <Property Name="qua_pcs_val" Type="Edm.Decimal" Precision="31" Scale="14" sap:unit="qua_pcs_uni" />
+                <Property Name="qua_pcs_uni" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:semantics="unit-of-measure" />
+                <NavigationProperty Name="to_root" Relationship="ZTMDRIROOT_C_CDS.assoc_2DCCCBC7CF73EA80238D59A10285CD90" FromRole="ToRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" ToRole="FromRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" />
+            </EntityType>
+            <EntityType Name="ZTMDRIROOT_CType" sap:label="DRIVER Root - Consumption View" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="tor_id" />
+                </Key>
+                <Property Name="tor_id" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document" />
+                <Property Name="tor_cat" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Document Category" sap:quickinfo="Business Document Category" />
+                <Property Name="execution" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Execution Status" />
+                <Property Name="src_locid" Type="Edm.String" MaxLength="20" sap:label="Location" />
+                <Property Name="pickup_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Transp. Plng Date" sap:quickinfo="Transportation Planning Date" />
+                <Property Name="pickup_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="pickup_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="des_locid" Type="Edm.String" MaxLength="20" sap:label="Location" />
+                <Property Name="des_name" Type="Edm.String" MaxLength="40" sap:label="Loc. Description" sap:quickinfo="Location Description" />
+                <Property Name="des_city" Type="Edm.String" MaxLength="40" sap:label="City" />
+                <Property Name="driver1" Type="Edm.String" MaxLength="40" sap:label="Resource" />
+                <Property Name="driver2" Type="Edm.String" MaxLength="40" sap:label="Resource" />
+                <Property Name="return_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Transp. Plng Date" sap:quickinfo="Transportation Planning Date" />
+                <Property Name="return_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="return_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="lifecycle" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Life Cycle Status" />
+                <Property Name="load_conf_seq_nbr" Type="Edm.String" MaxLength="18" />
+                <Property Name="load_conf_actual_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Actual Event Date" sap:quickinfo="Actual Date/Time of Event" />
+                <Property Name="load_conf_actual_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="load_conf_actual_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="arri_seq_nbr" Type="Edm.String" MaxLength="18" />
+                <Property Name="arri_actual_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Actual Event Date" sap:quickinfo="Actual Date/Time of Event" />
+                <Property Name="arri_actual_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="arri_actual_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="depa_seq_nbr" Type="Edm.String" MaxLength="18" />
+                <Property Name="depa_actual_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Actual Event Date" sap:quickinfo="Actual Date/Time of Event" />
+                <Property Name="depa_actual_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="depa_actual_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="pickup_offset" Type="Edm.Decimal" Precision="15" Scale="0" />
+                <NavigationProperty Name="to_atta" Relationship="ZTMDRIROOT_C_CDS.assoc_CAAD85C875F30573C91A00B4CD36638B" FromRole="FromRole_assoc_CAAD85C875F30573C91A00B4CD36638B" ToRole="ToRole_assoc_CAAD85C875F30573C91A00B4CD36638B" />
+                <NavigationProperty Name="to_item" Relationship="ZTMDRIROOT_C_CDS.assoc_2DCCCBC7CF73EA80238D59A10285CD90" FromRole="FromRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" ToRole="ToRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" />
+                <NavigationProperty Name="to_stop" Relationship="ZTMDRIROOT_C_CDS.assoc_BE8A18BA2F45332F3C79C3D3D0568881" FromRole="FromRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" ToRole="ToRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" />
+            </EntityType>
+            <EntityType Name="ZTMDRISTIT_CType" sap:label="Stop Item - Consumption View" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="tor_id" />
+                    <PropertyRef Name="stop_id" />
+                    <PropertyRef Name="item_id" />
+                </Key>
+                <Property Name="tor_id" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document" />
+                <Property Name="stop_id" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Stop" />
+                <Property Name="item_id" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Item" />
+                <Property Name="product_id" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Product" />
+                <Property Name="item_descr" Type="Edm.String" MaxLength="40" sap:label="Item Description" />
+                <Property Name="gro_wei_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="gro_wei_uni" />
+                <Property Name="gro_wei_uni" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure" />
+                <Property Name="gro_vol_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="gro_vol_uni" />
+                <Property Name="gro_vol_uni" Type="Edm.String" MaxLength="3" sap:label="Volume unit" sap:semantics="unit-of-measure" />
+                <Property Name="qua_pcs_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="qua_pcs_uni" />
+                <Property Name="qua_pcs_uni" Type="Edm.String" MaxLength="3" sap:label="Sales unit" sap:semantics="unit-of-measure" />
+                <Property Name="act_qua_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="act_qua_uni" />
+                <Property Name="act_qua_uni" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure" />
+                <Property Name="act_wei_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="act_wei_uni" />
+                <Property Name="act_wei_uni" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure" />
+                <Property Name="act_vol_val" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="act_vol_uni" />
+                <Property Name="act_vol_uni" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure" />
+                <NavigationProperty Name="to_root" Relationship="ZTMDRIROOT_C_CDS.assoc_7A13EE276CB59DFD7A46630E68B4E3C4" FromRole="FromRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" ToRole="ToRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" />
+                <NavigationProperty Name="to_stop" Relationship="ZTMDRIROOT_C_CDS.assoc_50B7557AB14C964CCF98969BCFD89398" FromRole="ToRole_assoc_50B7557AB14C964CCF98969BCFD89398" ToRole="FromRole_assoc_50B7557AB14C964CCF98969BCFD89398" />
+            </EntityType>
+            <EntityType Name="ZTMDRISTOP_CType" sap:label="DRIVER Stop - Consumption View" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="tor_id" />
+                    <PropertyRef Name="stop_id" />
+                </Key>
+                <Property Name="tor_id" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document" />
+                <Property Name="stop_id" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Stop" />
+                <Property Name="distance_km" Type="Edm.Decimal" Precision="28" Scale="2" />
+                <Property Name="des_locid" Type="Edm.String" MaxLength="20" sap:label="Location" />
+                <Property Name="des_xpos" Type="Edm.Double" sap:label="Longitude" sap:quickinfo="Longitude Specified in GPS Coordinates" />
+                <Property Name="des_ypos" Type="Edm.Double" sap:label="Latitude" sap:quickinfo="Latitude Specified in GPS Coordinates" />
+                <Property Name="des_name" Type="Edm.String" MaxLength="40" sap:label="Loc. Description" sap:quickinfo="Location Description" />
+                <Property Name="des_city" Type="Edm.String" MaxLength="40" sap:label="City" />
+                <Property Name="planned_arr" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Transp. Plng Date" sap:quickinfo="Transportation Planning Date" />
+                <Property Name="planned_arr_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="planned_arr_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="planned_dep" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Transp. Plng Date" sap:quickinfo="Transportation Planning Date" />
+                <Property Name="planned_dep_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="planned_dep_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="status" Type="Edm.String" MaxLength="8" />
+                <Property Name="arri_seq_nbr" Type="Edm.String" MaxLength="18" />
+                <Property Name="arri_actual_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Actual Event Date" sap:quickinfo="Actual Date/Time of Event" />
+                <Property Name="arri_actual_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="arri_actual_ti" Type="Edm.String" MaxLength="6" />
+                <Property Name="depa_seq_nbr" Type="Edm.String" MaxLength="18" />
+                <Property Name="depa_actual_tstmp" Type="Edm.Decimal" Precision="15" Scale="0" sap:label="Actual Event Date" sap:quickinfo="Actual Date/Time of Event" />
+                <Property Name="depa_actual_dt" Type="Edm.String" MaxLength="8" />
+                <Property Name="depa_actual_ti" Type="Edm.String" MaxLength="6" />
+                <NavigationProperty Name="to_root" Relationship="ZTMDRIROOT_C_CDS.assoc_BE8A18BA2F45332F3C79C3D3D0568881" FromRole="ToRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" ToRole="FromRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" />
+                <NavigationProperty Name="to_stit" Relationship="ZTMDRIROOT_C_CDS.assoc_50B7557AB14C964CCF98969BCFD89398" FromRole="FromRole_assoc_50B7557AB14C964CCF98969BCFD89398" ToRole="ToRole_assoc_50B7557AB14C964CCF98969BCFD89398" />
+            </EntityType>
+            <Association Name="assoc_50B7557AB14C964CCF98969BCFD89398" sap:content-version="1">
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRISTOP_CType" Multiplicity="1" Role="FromRole_assoc_50B7557AB14C964CCF98969BCFD89398">
+                    <OnDelete Action="Cascade" />
+                </End>
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRISTIT_CType" Multiplicity="*" Role="ToRole_assoc_50B7557AB14C964CCF98969BCFD89398" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_50B7557AB14C964CCF98969BCFD89398">
+                        <PropertyRef Name="stop_id" />
+                        <PropertyRef Name="tor_id" />
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_50B7557AB14C964CCF98969BCFD89398">
+                        <PropertyRef Name="stop_id" />
+                        <PropertyRef Name="tor_id" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_2DCCCBC7CF73EA80238D59A10285CD90" sap:content-version="1">
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIROOT_CType" Multiplicity="1" Role="FromRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90">
+                    <OnDelete Action="Cascade" />
+                </End>
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIITEM_CType" Multiplicity="*" Role="ToRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90">
+                        <PropertyRef Name="tor_id" />
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90">
+                        <PropertyRef Name="tor_id" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_BE8A18BA2F45332F3C79C3D3D0568881" sap:content-version="1">
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIROOT_CType" Multiplicity="1" Role="FromRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881">
+                    <OnDelete Action="Cascade" />
+                </End>
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRISTOP_CType" Multiplicity="*" Role="ToRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881">
+                        <PropertyRef Name="tor_id" />
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881">
+                        <PropertyRef Name="tor_id" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_CAAD85C875F30573C91A00B4CD36638B" sap:content-version="1">
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIROOT_CType" Multiplicity="1" Role="FromRole_assoc_CAAD85C875F30573C91A00B4CD36638B">
+                    <OnDelete Action="Cascade" />
+                </End>
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIATTA_CType" Multiplicity="*" Role="ToRole_assoc_CAAD85C875F30573C91A00B4CD36638B" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_CAAD85C875F30573C91A00B4CD36638B">
+                        <PropertyRef Name="tor_id" />
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_CAAD85C875F30573C91A00B4CD36638B">
+                        <PropertyRef Name="tor_id" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_7A13EE276CB59DFD7A46630E68B4E3C4" sap:content-version="1">
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRISTIT_CType" Multiplicity="1" Role="FromRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" />
+                <End Type="ZTMDRIROOT_C_CDS.ZTMDRIROOT_CType" Multiplicity="1" Role="ToRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" />
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4">
+                        <PropertyRef Name="tor_id" />
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4">
+                        <PropertyRef Name="tor_id" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZTMDRIROOT_C_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZTMDRIATTA_C" EntityType="ZTMDRIROOT_C_CDS.ZTMDRIATTA_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="ZTMDRIITEM_C" EntityType="ZTMDRIROOT_C_CDS.ZTMDRIITEM_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="ZTMDRIROOT_C" EntityType="ZTMDRIROOT_C_CDS.ZTMDRIROOT_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="ZTMDRISTIT_C" EntityType="ZTMDRIROOT_C_CDS.ZTMDRISTIT_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <EntitySet Name="ZTMDRISTOP_C" EntityType="ZTMDRIROOT_C_CDS.ZTMDRISTOP_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1" />
+                <AssociationSet Name="assoc_7A13EE276CB59DFD7A46630E68B4E3C4" Association="ZTMDRIROOT_C_CDS.assoc_7A13EE276CB59DFD7A46630E68B4E3C4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMDRISTIT_C" Role="FromRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" />
+                    <End EntitySet="ZTMDRIROOT_C" Role="ToRole_assoc_7A13EE276CB59DFD7A46630E68B4E3C4" />
+                </AssociationSet>
+                <AssociationSet Name="assoc_CAAD85C875F30573C91A00B4CD36638B" Association="ZTMDRIROOT_C_CDS.assoc_CAAD85C875F30573C91A00B4CD36638B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMDRIROOT_C" Role="FromRole_assoc_CAAD85C875F30573C91A00B4CD36638B" />
+                    <End EntitySet="ZTMDRIATTA_C" Role="ToRole_assoc_CAAD85C875F30573C91A00B4CD36638B" />
+                </AssociationSet>
+                <AssociationSet Name="assoc_2DCCCBC7CF73EA80238D59A10285CD90" Association="ZTMDRIROOT_C_CDS.assoc_2DCCCBC7CF73EA80238D59A10285CD90" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMDRIROOT_C" Role="FromRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" />
+                    <End EntitySet="ZTMDRIITEM_C" Role="ToRole_assoc_2DCCCBC7CF73EA80238D59A10285CD90" />
+                </AssociationSet>
+                <AssociationSet Name="assoc_50B7557AB14C964CCF98969BCFD89398" Association="ZTMDRIROOT_C_CDS.assoc_50B7557AB14C964CCF98969BCFD89398" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMDRISTOP_C" Role="FromRole_assoc_50B7557AB14C964CCF98969BCFD89398" />
+                    <End EntitySet="ZTMDRISTIT_C" Role="ToRole_assoc_50B7557AB14C964CCF98969BCFD89398" />
+                </AssociationSet>
+                <AssociationSet Name="assoc_BE8A18BA2F45332F3C79C3D3D0568881" Association="ZTMDRIROOT_C_CDS.assoc_BE8A18BA2F45332F3C79C3D3D0568881" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZTMDRIROOT_C" Role="FromRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" />
+                    <End EntitySet="ZTMDRISTOP_C" Role="ToRole_assoc_BE8A18BA2F45332F3C79C3D3D0568881" />
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZTMDRIROOT_C_CDS.ZTMDRIROOT_C_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
+            </Annotations>
+            <atom:link rel="self" href="http://vm2110.sapls.local:8000/sap/opu/odata/sap/ZTMDRIROOT_C_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="latest-version" href="http://vm2110.sapls.local:8000/sap/opu/odata/sap/ZTMDRIROOT_C_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
